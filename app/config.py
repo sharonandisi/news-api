@@ -2,6 +2,7 @@ class Config
     """
     General configuration parent class
     """
+    NEWS_API_BASE_URL = 'https://newsapi.org/V2/everything/{}?api_key={}'
 
 class ProdConfig(Config):
     """
