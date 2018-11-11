@@ -1,5 +1,8 @@
 from app import app
+import urllib.request,json
+from .models import source
 
+Source = source.Source
 #getting api key
 api_key = app.config['NEWS_API_KEY']
 
@@ -23,3 +26,4 @@ def get_source(category):
             source_results = process_results(source_results_list)
 
     return source_results
+

@@ -11,9 +11,9 @@ def index():
     title = 'Home - Welcome to your online News room'
     return render_template('index.html', title = title)
 
-@app.route('/newssource/<int :source_id>')
-def newssource(newssource_id):
+@app.route('/newssource/<int:id>')
+def newssource(id):
     """
     View newssource page function that returns news source page and its data
     """
-    return render_template('newssource.html', id = newssource_id)
+    return render_template('newssource.html', id = id)
