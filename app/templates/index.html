@@ -9,6 +9,29 @@
         {% endif %}
     </head>
     <body>
-        
+        <!-- top headlines section -->
+        <h3> Top Headlines </h3>
+        <ul>
+            {% for topheadlines_sources in top-headlines %}
+                <li>{{ topheadlines_sources.name}}</li>
+            {% endfor %}
+        </ul>
+        <!-- business section -->
+        <h3> Business </h3>
+        <ul>
+            {% for business_sources in business %}
+                <li> {{ business_sources.name }}</li>
+                {% endfor %}
+        </ul>
+
+        <!-- entertainment -->
+        <h3> entertainment </h3>
+        <ul>
+            {% for entertainment_sources in entertainment %}
+                <li>
+                    {entertainment_sources.name}
+                </li>
+            {% endfor %}
+        </ul>
     </body>
 </html>
