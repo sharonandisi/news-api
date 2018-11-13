@@ -49,3 +49,19 @@ def get_sources(category):
                 source_object = Source(id,name,urlToImage,publishedAt,url)
                 source_results.append(source.object)
     return source_results
+
+    def get_source(id):
+        get_source_details_url = base_url.format(id,api_key)
+
+        with urllib.request.urlopen(get_source_details_url) as url:
+            source_details_data = url.read()
+            source_details_response = json.loads(source_details_data)
+            source_object = None
+            if source_details_response:
+                id = source_details_response.get('id')
+                name = source_details_response.get('name')
+                urlToImage = source_details_response.get('urlToImage')
+                publishedAt = source_details_response.get('publishedAt')
+                url = source_details_response.get ('url')
+                source_object = Source(id,name,urlToImage,publishedAt,url)
+    return source_object
