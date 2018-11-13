@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro%}
 <!-- Content block -->
 {% block content %}
 <div class="container">
@@ -13,6 +14,16 @@
         <p class = "publishedAt">{{publishedAt}}</p>
         <a class = "comments" href="/source/comment/new/{{source.id}}"> Write a new comment</a>
     </div>
+    </div>
+    <div class="row">
+        <h1>Comments</h1>
+        <hr>
+        {% if reviews %}
+            {{macro.displayComments(comments)}}
+        {% else%}
+            <h3 class = "text-center">This source has no comments</h3>
+            <a class = "btn btn-success btn-lg text-center" href="/source/comment/new/{{comment.id}}">Write a new comment</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
