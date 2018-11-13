@@ -13,7 +13,11 @@ def index():
     business_sources = get_sources('business')
     entertainment_sources = get_sources('entertainment')
     title = 'Home - Welcome to your online News room'
-    return render_template('index.html', title = title , topheadlines_sources = top-headlines, business_sources = business, entertainment_sources = entertainment)
+    search_source = request.args.get(source_query)
+    if search_source:
+        return redirect(url_for('search',source_name=search_source))
+    else:
+        return render_template('index.html', title = title , topheadlines_sources = top-headlines, business_sources = business, entertainment_sources = entertainment)
 
 @app.route('/source/<int:id>')
 def source(id):
