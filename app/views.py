@@ -38,3 +38,18 @@ def search(source_name):
     searched_sources = search_source(source_name_format)
     name = f'search results for {source_name}'
     return render_template('search.html', sources = searched_sources)
+
+@app.route('/source/comment/new/<int:id>', methods = ['GET', 'POST'])
+def new_comment(id):
+    form = CommentForm()
+    movie = get_source(id)
+
+    if form.validate_on_submit():
+        name = form.name.data
+        comment = form.comment.data
+        new_comment = Comment(source.id,name,urlToImage,comment)
+        new_comment.save_comment()
+        return redirect(url_for('source',id = source.id))
+
+        name = f'{source.name} comment'
+        return render_template('new_comment.html',name = name, comment_form=form, source=source)
