@@ -10,3 +10,11 @@
         </div>
     {% endfor %}
 {% endmacro %}
+
+{% macro displayComments(comment_list) %}
+    {% for comment in comment_list %}<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 comment-card">
+    <h2> {{ comment.name}} </h2>
+    <p> {{ comment.comment | truncate(30) }}</p>
+    </div>
+    {% endfor %} 
+{% endmacro %}
