@@ -2,44 +2,32 @@
 {% import 'macros.html' as macro %}
 
 {% block styles%} {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {% endblock %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> 
+{% endblock %}
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset = "utf-8">
-        {% if title %}
-        <title> {{ title }} </title>
-        {% else %}
-        <title>Welcome to your online News room</title>
-        {% endif %}
-    </head>
-    <body>
         <!-- content block -->
-        {% block content %}
-        <div class="container">
-            <form>
-                <input type="text" name="source_query" placeholder="Search for a News source" class="form-control">
-                <input type="submit" value="Submit" class="btn btn-default">
-            </form>
-        
-        </div>
-        <!-- top headlines section -->
-        <h3> Top Headlines </h3>
-        <ul>
-            {{macro.displaySourceList(top-headlines)}}
-        </ul>
-        <!-- business section -->
-        <h3> Business </h3>
-        <ul>
-            {{macro.displaySourceList(business)}} 
-        </ul>
+{% block content %}
+<div class="container">
+    <form>
+        <input type="text" name="source_query" placeholder="Search for a News source" class="form-control">
+        <input type="submit" value="Submit" class="btn btn-default">
+    </form>
 
-        <!-- entertainment -->
-        <h3> entertainment </h3>
-        <ul>
-           {{macro.displaySourceList(entertainment)}}
-        </ul>
-        {% endblock %}
-    </body>
-</html>
+</div>
+<!-- top headlines section -->
+<h3> Top Headlines </h3>
+<ul>
+    {{macro.displaySourceList(topheadlines_sources) }}
+</ul>
+<!-- business section -->
+<h3> Business </h3>
+<ul>
+    {{macro.displaySourceList(business_sources)}} 
+</ul>
+
+<!-- entertainment -->
+<h3> Entertainment </h3>
+<ul>
+    {{macro.displaySourceList(entertainment_sources)}}
+</ul>
+{% endblock %}

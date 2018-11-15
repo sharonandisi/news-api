@@ -1,9 +1,10 @@
-from flask import render_template
-from app import app
-from .request import get_sources,get_source,search_source
-
+from flask import render_template, request,redirect,url_for
+from . import main
+from ..request import get_sources,get_source,search_source
+from .forms import CommentForm
+from ..models import Comment
 #views
-@app.route('/')
+@main.route('/')
 def index():
     """
     View root page function that returns the index page and its data
@@ -13,13 +14,14 @@ def index():
     business_sources = get_sources('business')
     entertainment_sources = get_sources('entertainment')
     title = 'Home - Welcome to your online News room'
-    search_source = request.args.get(source_query)
-    if search_source:
-        return redirect(url_for('search',source_name=search_source))
-    else:
-        return render_template('index.html', title = title , topheadlines_sources = top-headlines, business_sources = business, entertainment_sources = entertainment)
+    # print(topheadlines_sources.articles)
+    # search_source = request.args.get(source_query)
+    # if search_source:
+    #     return redirect(url_for('search',source_name=search_source))
+    # else:
+    return render_template('index.html', title = title , topheadlines_sources = topheadlines_sources, business_sources = business_sources, entertainment_sources = entertainment_sources)
 
-@app.route('/source/<int:id>')
+@main.route('/source/<int:id>')
 def source(id):
     """
     View source page function that returns source page and its data
@@ -28,7 +30,7 @@ def source(id):
     name = f'{source.name}'
     return render_template('source.html', name = name, source = source)
 
-@app.route('/search/<source_name>')
+@main.route('/search/<source_name>')
 def search(source_name):
     '''
     View function to display the search results
@@ -39,7 +41,7 @@ def search(source_name):
     name = f'search results for {source_name}'
     return render_template('search.html', sources = searched_sources)
 
-@app.route('/source/comment/new/<int:id>', methods = ['GET', 'POST'])
+@main.route('/source/comment/new/<int:id>', methods = ['GET', 'POST'])
 def new_comment(id):
     form = CommentForm()
     movie = get_source(id)
